@@ -1,0 +1,10 @@
+┌──(kali㉿G16-7620)-[~/code/src/c]
+└─$ gcc c4.c -o c4.elf && ./c4.elf
+[F]: F9
+[F]: exception syscall id(orig_rax) = 39
+[F]: F9
+[F]: normal syscall id(orig_rax) 83
+[F]: F9
+[F]: exception syscall id(orig_rax) = 231
+[F]: F9
+Unexpected wait status 0

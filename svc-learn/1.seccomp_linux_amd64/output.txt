@@ -1,0 +1,57 @@
+┌──(kali㉿G16-7620)-[~/code/src/c]
+└─$ gcc c3.c -o c3.elf
+
+┌──(kali㉿G16-7620)-[~/code/src/c]
+└─$ ./c3.elf ./flag ./flag2
+[*] cp './flag' to './flag2'
+Configuring seccomp
+[*] open(argv[1], O_RDONLY)=3
+Bad system call
+
+┌──(kali㉿G16-7620)-[~/code/src/c]
+└─$ strace -i ./c3.elf ./flag ./flag2
+[00007f5a654dc207] execve("./c3.elf", ["./c3.elf", "./flag", "./flag2"], 0x7ffe37b51ec8 /* 37 vars */) = 0
+[00007f2798c007e7] brk(NULL)            = 0x5575d4b23000
+[00007f2798c01832] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f2798bdf000
+[00007f2798c01447] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[00007f2798c016aa] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+[00007f2798c0149a] newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=52211, ...}, AT_EMPTY_PATH) = 0
+[00007f2798c01832] mmap(NULL, 52211, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f2798bd2000
+[00007f2798c01597] close(3)             = 0
+[00007f2798c016aa] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+[00007f2798c01724] read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P~\2\0\0\0\0\0"..., 832) = 832
+[00007f2798c016fa] pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+[00007f2798c0149a] newfstatat(3, "", {st_mode=S_IFREG|0755, st_size=1933688, ...}, AT_EMPTY_PATH) = 0
+[00007f2798c016fa] pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+[00007f2798c01832] mmap(NULL, 1985936, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f27989ed000
+[00007f2798c01832] mmap(0x7f2798a13000, 1404928, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x26000) = 0x7f2798a13000
+[00007f2798c01832] mmap(0x7f2798b6a000, 348160, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x17d000) = 0x7f2798b6a000
+[00007f2798c01832] mmap(0x7f2798bbf000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1d1000) = 0x7f2798bbf000
+[00007f2798c01832] mmap(0x7f2798bc5000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f2798bc5000
+[00007f2798c01597] close(3)             = 0
+[00007f2798c01832] mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f27989ea000
+[00007f2798bfc375] arch_prctl(ARCH_SET_FS, 0x7f27989ea740) = 0
+[00007f2798bf33ca] set_tid_address(0x7f27989eaa10) = 3359
+[00007f2798bf3426] set_robust_list(0x7f27989eaa20, 24) = 0
+[00007f2798bf349e] rseq(0x7f27989eb060, 0x20, 0, 0x53053053) = 0
+[00007f2798c018b7] mprotect(0x7f2798bbf000, 16384, PROT_READ) = 0
+[00007f2798c018b7] mprotect(0x5575d2eda000, 4096, PROT_READ) = 0
+[00007f2798c018b7] mprotect(0x7f2798c11000, 8192, PROT_READ) = 0
+[00007f2798aed0d0] prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+[00007f2798c018d7] munmap(0x7f2798bd2000, 52211) = 0
+[00007f2798ae7d1a] newfstatat(1, "", {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x3), ...}, AT_EMPTY_PATH) = 0
+[00007f2798a83025] getrandom("\x8c\xc8\x85\x07\x69\x37\x8f\x33", 8, GRND_NONBLOCK) = 8
+[00007f2798aed5c7] brk(NULL)            = 0x5575d4b23000
+[00007f2798aed5c7] brk(0x5575d4b44000)  = 0x5575d4b44000
+[00007f2798aec4e0] write(1, "[*] cp './flag' to './flag2'\n", 29[*] cp './flag' to './flag2'
+) = 29
+[00007f2798aec4e0] write(1, "Configuring seccomp\n", 20Configuring seccomp
+) = 20
+[00007f2798af935d] prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) = 0
+[00007f2798af935d] prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, {len=6, filter=0x7ffd5bf44cb0}) = 0
+[00007f2798aeb11e] openat(AT_FDCWD, "./flag", O_RDONLY) = 3
+[00007f2798aec4e0] write(1, "[*] open(argv[1], O_RDONLY)=3\n", 30[*] open(argv[1], O_RDONLY)=3
+) = 30
+[00007f2798aeb11e] openat(AT_FDCWD, "./flag2", O_WRONLY|O_CREAT, 0644) = 257
+[????????????????] +++ killed by SIGSYS +++
+Bad system call
