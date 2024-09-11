@@ -128,7 +128,7 @@ static void process_signals(pid_t child)
                     if (strcmp(file_to_avoid, (char *)orig_file) == 0)
                     {
                         // change the filename in the child process
-                        putdata_to_regs(child, (char *)regs.rsi, (char*)file_to_redirect, strlen(file_to_avoid)+1);
+                        putdata_to_regs(child, (unsigned long long)regs.rsi, (char*)file_to_redirect, strlen(file_to_avoid)+1);
                         //重定向,读取另外一个文件
                         //read_filename(child, orig_file, regs);
                         //printf("[Openat changed %s] \n", orig_file);

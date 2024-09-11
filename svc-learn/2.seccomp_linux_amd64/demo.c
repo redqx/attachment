@@ -16,7 +16,8 @@ void configure_seccomp()
     //     BPF_STMT(BPF_LD | BPF_W | BPF_ABS, (offsetof(struct seccomp_data, args[2]))),
     //     BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, O_RDONLY, 0, 1),
     //     BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
-    //     BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_KILL)};
+    //     BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_KILL)
+    // };
 
     struct sock_filter filter[] = {
         BPF_STMT(BPF_LD | BPF_W | BPF_ABS, (offsetof(struct seccomp_data, nr))), //L1

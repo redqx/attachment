@@ -178,19 +178,3 @@ void putdata(pid_t pid, char* addr, char * str, long sz)
         ptrace(PTRACE_POKEDATA, pid, addr + i * 8, *(long *)(s + i * 8));
     }
 }
-
-/*
-===
-C:/trace-seccomp-arrch64
-λ clang++ -target aarch64-linux-android29 arm_seccomp_ptrace.cpp -o tuziseccomp -static-libstdc++
-C:/trace-seccomp-arrch64
-λ adb push .\tuziseccomp /data/local/tmp
-====
-PBCM10:/data/local/tmp $ chmod a+x tuziseccomp
-PBCM10:/data/local/tmp $ ./tuziseccomp
-syscall num : 56
-[Openiat /data/local/tmp/flag.txt]
-pid : 20572  addr : 5559d50940 str : /data/local/tmp/hacker.txt sz : 27
-hacker{you was hacked!!!}
-syscall num : 56
-*/

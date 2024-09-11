@@ -21,7 +21,7 @@ void die(const char *msg)
 
 void attack()
 {
-    syscall(SYS_getpid, SYS_mkdir, "dir", 0777);//这样些看上去有错,但只会调用2次syscall
+    syscall(SYS_getpid, SYS_mkdir, "dir", 0777);
 	//syscall(SYS_getpid);
 	//syscall(SYS_mkdir, "dir", 0777);
 }
@@ -39,7 +39,8 @@ int main()
         //子进程
         ptrace(PTRACE_TRACEME, 0, NULL, NULL);
         kill(getpid(), SIGSTOP);//当前进程停止,然后给tracer/father发送SIGSTOP
-        attack();
+        //attack();
+        syscall(SYS_getpid, SYS_mkdir, "dir", 0777);//这样写看上去是错误的,但是父进程会修复该调用
         return 0;
     }
 
